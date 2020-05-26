@@ -53,10 +53,13 @@ try:
 except IndexError:
     fname = 'switchtimes_rr.data'
 
+print(f"Using data: {fname}")
+
 with open(fname, 'r') as f:
     data = [*map(int, f.read().split())]
 
 print(f"Mean: {np.mean(data)}\nStd. dev: {np.std(data)}\nMedian: {np.median(data)}")
+print(f"{len(data)}")
 
 if print_peak_deltas:
     old_n = 0

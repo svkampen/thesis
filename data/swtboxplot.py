@@ -17,7 +17,7 @@ data.sort(key=operator.itemgetter(0))
 xs, ys = zip(*data)
 
 for x,y in data:
-    print(f"{x}: {len(y)}")
+    print(f"{x}: {len(y)} {min(y)}")
 
 
 means = [np.mean(y) for y in ys]
@@ -36,8 +36,9 @@ data.sort(key=operator.itemgetter(0))
 
 bx_artists = ax.boxplot([x[1] for x in data], positions=[x[0] for x in data], widths=[x[0]/10 for x in data], sym='+', showmeans=True, manage_ticks=True, flierprops={'markeredgewidth': 0.5})
 
-yticks = [10, 100]
+yticks = [5, 10, 100]
 yticksmin = [20,30,40,50,60,70,80,90,120,140]
+ax.set_ylim(5)
 ax.set_yticks(yticks)
 ax.set_yticks(yticksmin,True)
 ax.set_yticklabels(yticks)
@@ -50,7 +51,7 @@ def f(reg_xs):
 
 line = ax.plot(reg_xs, f(reg_xs), linestyle='dotted')
 
-ax.legend([bx_artists['means'][0], bx_artists['medians'][0], line[0]], ['Mean', 'Median', f'Linear fit to mean ($r^2$ = {r_value**2:.4f})'])
+ax.legend([bx_artists['means'][0], bx_artists['medians'][0], line[0]], ['Mean', 'Median', f'Linear fit to mean ($r^2$ = {r_value**2:.4f})'], loc='upper left')
 
 ax.set_xlabel('Number of priorities')
 ax.set_ylabel('Task switch time (μs)')
