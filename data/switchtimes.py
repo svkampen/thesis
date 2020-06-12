@@ -86,7 +86,7 @@ labels = map(str, ticks)
 
 plt1.set_xticks(ticks)
 plt1.set_xticklabels(labels)
-plt1.bar(xs, ys, log=True, width=0.7)
+plt1.bar(xs, ys, log=True, width=0.7, color='cornflowerblue')
 plt1.set_xlabel('Task switch time (µs)')
 plt1.set_ylabel('Number of task switches with given task switch time')
 
