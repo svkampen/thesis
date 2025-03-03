@@ -1,0 +1,109 @@
+\documentclass[twoside]{uva-inf-bachelor-thesis}
+\usepackage[english]{babel}
+\usepackage{outlines}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{biblatex}
+\usepackage{braket}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{listings}
+
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\code}[1]{\lstinline[breaklines=true]{#1}}
+\newcommand{\ucosiii}{\textmu C/OS-III\xspace}
+\newcommand{\ucosii}{\textmu C/OS-II\xspace}
+\newcommand{\ucpu}{\textmu C/CPU\xspace}
+\newcommand{\ucos}{\textmu C/OS\xspace}
+\newcommand{\task}[1]{\ensuremath{\tau_#1}}
+
+\addbibresource{refs.bib}
+\usepackage{graphicx}
+
+\usepackage{fontspec}
+%\setmainfont[Ligatures={Common,TeX}]{Adobe Caslon Pro}
+%\setsansfont{Source Sans Pro}
+%\setmonofont{Iosevka}
+
+\lstset{language=[ARM]Assembler,numbers=left,basicstyle=\small\ttfamily}
+
+
+\makeatletter
+\define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
+\makeatother
+
+\title{Predictable, guarantee-backed\\dynamic priority scheduling in the \ucosiii real-time operating system}
+\author{Sam van Kampen}
+\supervisors{T. Walstra}
+\signedby{Signees}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    In this thesis, the field of real-time scheduling is explored, starting with an overview of scheduling algorithms, then diving into schedulability analysis and various extensions to common scheduling algorithms. Subsequently, scheduling and operating system theory is applied by porting the \ucosiii real-time operating system to the Raspberry Pi, writing an Earliest Deadline First scheduler backed by the processor demand criterion schedulability guarantee, and evaluating the performance and utility of said scheduler in contrast to \ucosiii's default, priority-based scheduler, using the Rate Monotonic algorithm. The EDF scheduler was found to perform significantly better at little extra implementation cost, and the processor demand criterion was found to accurately determine schedulability in practice.
+\end{abstract}
+
+
+\tableofcontents
+
+%
+%
+% I N T R O D U C T I O N
+%
+%
+
+\include{introduction}
+
+%
+%
+% R E L A T E D  W O R K
+%
+%
+
+\include{related_work}
+
+%
+%
+% S C H E D U L I N G
+%
+%
+
+\include{scheduling}
+
+%
+%
+% uCOS/III on the Raspberry Pi
+%
+%
+
+\include{ucos_on_raspi}
+
+%
+%
+% I M P L E M E N T A T I O N
+%
+%
+
+\include{implementation}
+
+%
+%
+% E X P E R I M E N T S
+%
+%
+
+\include{experiments}
+
+%
+% D I S C U S S I O N / C O N C L U S I O N
+%
+
+\include{discussion_conclusion}
+
+{
+    \hfuzz=8pt
+    \printbibliography
+}
+\end{document}
